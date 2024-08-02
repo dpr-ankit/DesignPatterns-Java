@@ -13,6 +13,22 @@ class HomeBill extends Bill {
     }
 }
 
+class ImplementSingleton {
+
+    private static ImplementSingleton obj;
+
+    private ImplementSingleton() {}
+
+    public static ImplementSingleton getInstance() {
+        synchronized (ImplementSingleton.class) {
+            if (obj == null) {
+                obj = new ImplementSingleton();
+            }
+        }
+        return obj;
+    }
+}
+
 class OfficeBill extends Bill {
     double getBill(double unit) {
         return 5.5;
@@ -34,8 +50,16 @@ class Factory {
 
 public class Main {
 
-    public static void main(String[] args) {
-	    Bill myBillRate = Factory.getBillRate("home");
+    static  void FactoryDesign () {
+        Bill myBillRate = Factory.getBillRate("home");
         System.out.println(myBillRate.getBill(3.3));
+    }
+
+    static void triggerDesignPatterns() {
+        FactoryDesign();
+    }
+
+    public static void main(String[] args) {
+        triggerDesignPatterns();
     }
 }
